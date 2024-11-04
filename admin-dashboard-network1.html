@@ -1,0 +1,458 @@
+<script src="script/admin_script.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style/admin-dashboard.css">
+</head>
+
+<body>
+    <div class="menuToggle"></div>
+    <div class="sidebar">
+        <ul>
+            <li style="--bg:#333;" class="bottom">
+                <a href="#">
+                    <div class="icon">
+                        <div class="imgBx">
+                            <img src="images/admin-icon.png" alt="Profile Image">
+                        </div>
+                        </div>
+                        <div class="text">ADMIN DASHBOARD
+                    </div>
+                </a>
+            </li>
+
+    <li class="logo unique-logo" style="--bg:#333;">
+        <a href="#">
+            <div class="icon">
+                <div class="imgBx unique-imgBx">
+                    <img src="images/AGH.png" alt="Profile Image">
+                </div>
+            </div>
+        </a>
+    </li>
+
+            <ul class="Menulist">
+                            
+                <li style="--bg:#ffa117;" data-section="profile">
+                    <a href="#">
+                        <div class="icon"><ion-icon name="eye-outline"></ion-icon></div>
+                        <div class="text">View Users</div>
+                    </a>
+                </li>
+
+                <li style="--bg:#ffa117;" data-section="users">
+                    <a href="#">
+                        <div class="icon"><ion-icon name="person-add-outline"></ion-icon></div>
+                        <div class="text">Add Users</div>
+                    </a>
+                </li>
+                <li style="--bg:#ffa117;" data-section="reports">
+                    <a href="#">
+                        <div class="icon"><ion-icon name="stats-chart-outline"></ion-icon></div>
+                        <div class="text"> Generate Reports</div>
+                    </a>
+                </li>
+            </ul>
+
+            <li style="--bg:#333;">
+                <a href="php/logout.php" onclick="return confirm('Are you sure you want to log out?');">
+                    <div class="icon"><ion-icon name="log-out-outline"></ion-icon></div>
+                    <div class="text">Logout</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+<div class="content">
+
+<!-- View Section -->
+<div class="profile active-section">
+    <h1>View Users</h1>
+    <div class="view-options">
+        <button onclick="showView('admin')">Admin View</button>
+        <button onclick="showView('doctor')">Doctor View</button>
+        <button onclick="showView('healthworker')">Health Worker View</button>
+        <button onclick="showView('patient')">Patient View</button>
+    </div>
+
+    <input type="text" id="search-input" placeholder="Search key word..." onkeyup="searchUsers()">
+    <div id="view-container">
+
+        <!-- Admin View -->
+        <div id="admin-view" class="view" style="display: none;">
+            <div class="table-container">
+            <h2>Admin View</h2>
+            <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Password</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Date Added</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-tbody">
+                </tbody>
+            </table>
+        </div>
+            </div>
+        </div>
+
+        <!-- Doctor View -->
+        <div id="doctor-view" class="view">
+            <h2>Doctor View</h2>
+            <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Password</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Specialization</th>
+                        <th>Emergency Contact</th>
+                        <th>Date Added</th>
+                    </tr>
+                </thead>
+                <tbody id="doctor-tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+        <!-- Health Worker View -->
+        <div id="healthworker-view" class="view">
+            <h2>Health Worker View</h2>
+            <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Password</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Department</th>
+                        <th>Emergency Contact</th>
+                        <th>Date Added</th>
+                    </tr>
+                </thead>
+                <tbody id="healthworker-tbody">
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+        <!-- Patient View -->
+        <div id="patient-view" class="view">
+            <h2>Patient View</h2>
+            <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Symptoms</th>
+                        <th>Diagnosis</th>
+                        <th>Route of admission</th>
+                        <th>Date of admission</th>
+                        <th>Address</th>
+                        <th>Hospital</th>
+                        <th>Phone</th>
+                        <th>Unit</th>
+                        <th>Origin</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="patient-tbody">
+                    <!-- Patient data rows will go here -->
+                </tbody>
+            </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Add Users Section -->
+    <div class="users">
+        <h1>Add Users</h1>
+
+        <form id="user-form" action="php/add_users.php" method="POST">
+            <!-- Radio Buttons for User Type -->
+            <div class="user-type-selection">
+                <label>
+                    <input type="radio" name="user_type" value="Admin" onclick="showForm('admin')" required>
+                    Admin
+                </label>
+                <label>
+                    <input type="radio" name="user_type" value="Doctor" onclick="showForm('doctor')" required>
+                    Doctor
+                </label>
+                <label>
+                    <input type="radio" name="user_type" value="Health Worker" onclick="showForm('health_worker')" required>
+                    Health Worker
+                </label>
+                <label>
+                    <input type="radio" name="user_type" value="Patient" onclick="showForm('patient')" required>
+                    Patient
+                </label>
+            </div>
+
+            <!-- Form Sections -->
+            <div id="admin_form" class="user-form-section">
+                <h2>Admin Information</h2>
+                <div class="form-row">
+                    <label for="admin_username">Username:</label>
+                    <input id="admin_username" type="text" name="admin_username" placeholder="Username">
+
+                    <label for="admin_surname">Surname:</label>
+                    <input id="admin_surname" type="text" name="admin_surname" placeholder="Surname">
+
+                    <label for="admin_password">Password:</label>
+                    <input id="admin_password" type="password" name="admin_password" placeholder="Password">
+
+                    <label for="admin_gender">Gender:</label>
+                    <select id="admin_gender" name="admin_gender">
+                        <option value="" disabled selected>Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+
+                    <label for="admin_age">Age:</label>
+                    <input id="admin_age" type="number" name="admin_age" min="0" max="120" placeholder="Enter your age">
+
+                    <label for="admin_email">Email:</label>
+                    <input id="admin_email" type="email" name="admin_email" placeholder="Enter your email">
+
+                    <label for="admin_phone">Phone Number:</label>
+                    <input id="admin_phone" type="text" name="admin_phone" placeholder="Enter your phone number">
+
+                    <label for="admin_address">Address:</label>
+                    <input id="admin_address" type="text" name="admin_address" placeholder="Enter your address">
+
+                    <label for="admin_date_of_joining">Date of Joining:</label>
+                    <input id="admin_date_of_joining" type="date" name="admin_date_of_joining">
+                </div>
+                            <!-- Submit Button -->
+            <button id="submit-btn" type="submit">Submit</button>
+            </div>
+
+            <div id="doctor_form" class="user-form-section">
+                <h2>Doctor Information</h2>
+                <div class="form-row">
+                    <label for="doctor_username">Username:</label>
+                    <input id="doctor_username" type="text" name="doctor_username" placeholder="Username">
+
+                    <label for="doctor_surname">Surname:</label>
+                    <input id="doctor_surname" type="text" name="doctor_surname" placeholder="Surname">
+
+                    <label for="doctor_password">Password:</label>
+                    <input id="doctor_password" type="password" name="doctor_password" placeholder="Password">
+
+                    <label for="doctor_gender">Gender:</label>
+                    <select id="doctor_gender" name="doctor_gender">
+                        <option value="" disabled selected>Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+
+                    <label for="doctor_age">Age:</label>
+                    <input id="doctor_age" type="number" name="doctor_age" min="0" max="120" placeholder="Enter your age">
+
+                    <label for="doctor_email">Email:</label>
+                    <input id="doctor_email" type="email" name="doctor_email" placeholder="Enter your email">
+
+                    <label for="doctor_phone">Phone Number:</label>
+                    <input id="doctor_phone" type="tel" name="doctor_phone" placeholder="Enter your phone number">
+
+                    <label for="doctor_address">Address:</label>
+                    <input id="doctor_address" type="text" name="doctor_address" placeholder="Enter your address">
+
+                    <label for="specialization">Specialization:</label>
+                    <select id="specialization" name="specialization">
+                        <option value="" disabled selected>Select Specialist</option>
+                        <option value="GP">General Practitioners (GPs)</option>
+                        <option value="Surgeons">Surgeons</option>
+                        <option value="Pediatricians">Pediatricians</option>
+                        <option value="OB/GYN">Obstetricians and Gynecologists (OB/GYN)</option>
+                        <option value="Internal Medicine">Internal Medicine Specialists</option>
+                    </select>
+
+                    <label for="doctor_emergency_contact">Emergency Contact:</label>
+                    <input id="doctor_emergency_contact" type="text" name="doctor_emergency_contact" placeholder="Emergency Contact">
+
+                    <label for="doctor_date_of_joining">Date of Joining:</label>
+                    <input id="doctor_date_of_joining" type="date" name="doctor_date_of_joining">
+                </div>
+                            <!-- Submit Button -->
+            <button id="submit-btn" type="submit">Submit</button>
+            </div>
+
+            <div id="health_worker_form" class="user-form-section">
+                <h2>Health Worker Information</h2>
+                <div class="form-row">
+                    <label for="healthworkers_username">Username:</label>
+                    <input id="healthworkers_username" type="text" name="healthworkers_username" placeholder="Username">
+
+                    <label for="healthworkers_surname">Surname:</label>
+                    <input id="healthworkers_surname" type="text" name="healthworkers_surname" placeholder="Surname">
+
+                    <label for="healthworkers_password">Password:</label>
+                    <input id="healthworkers_password" type="password" name="healthworkers_password" placeholder="Password">
+
+                    <label for="healthworkers_gender">Gender:</label>
+                    <select id="healthworkers_gender" name="healthworkers_gender">
+                        <option value="" disabled selected>Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+
+                    <label for="healthworkers_age">Age:</label>
+                    <input id="healthworkers_age" type="number" name="healthworkers_age" min="0" max="120" placeholder="Enter your age">
+
+                    <label for="healthworkers_email">Email:</label>
+                    <input id="healthworkers_email" type="email" name="healthworkers_email" placeholder="Enter your email">
+
+                    <label for="healthworkers_phone">Phone Number:</label>
+                    <input id="healthworkers_phone" type="tel" name="healthworkers_phone" placeholder="Enter your phone number">
+
+                    <label for="healthworkers_address">Address:</label>
+                    <input id="healthworkers_address" type="text" name="healthworkers_address" placeholder="Enter your address">
+
+                    <label for="healthworkers_department">Department:</label>
+                    <select id="healthworkers_department" name="healthworkers_department">
+                            <option value="" disabled selected>Select Department</option>
+                             <option value="Emergency Department">Emergency Department</option>
+                             <option value="Internal Medicine">Internal Medicine</option>
+                            <option value="Surgery">Surgery</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="Radiology">Radiology</option>
+                        </select>
+
+
+                  <label for="healthworkers_emergency_contact">Emergency Contact:</label>
+                    <input id="healthworkers_emergency_contact" type="text" name="healthworkers_emergency_contact" placeholder="Emergency Contact">
+
+                    <label for="healthworkers_date_of_joining">Date of Joining:</label>
+                    <input id="healthworkers_date_of_joining" type="date" name="healthworkers_date_of_joining">
+                </div>
+                            <!-- Submit Button -->
+            <button id="submit-btn" type="submit">Submit</button>
+            </div>
+
+            <div id="patient_form" class="user-form-section">
+                <h2>Patient Information</h2>
+                <div class="form-row">
+                    <label for="patients_username">Username:</label>
+                    <input id="patients_username" type="text" name="patients_username" placeholder="Username">
+
+                    <label for="patients_surname">Surname:</label>
+                    <input id="patients_surname" type="text" name="patients_surname" placeholder="Surname">
+
+                    <label for="patients_gender">Gender:</label>
+                    <select id="patients_gender" name="patients_gender">
+                        <option value="" disabled selected>Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+
+                    <label for="patients__age">Age:</label>
+                    <input id="patients__age" type="number" name="patients_age" min="0" max="120" placeholder="Enter your age">
+
+                    <label for="patients_symptoms">Symptoms:</label>
+                    <input id="patients_symptoms" type="text" name="patients_symptoms" placeholder="Describe symptoms">
+
+                    <label for="patients_diagnosis">Diagnosis:</label>
+                    <input id="patients_diagnosis" type="text" name="patients_diagnosis" placeholder="Enter diagnosis">
+
+                    <label for="patients_route_of_admission">Route of Admission:</label>
+                    <input id="patients_route_of_admission" type="text" name="patients_route_of_admission" placeholder="Route of Admission">
+
+                    <label for="patients_date_of_admission">Date of Admission:</label>
+                    <input id="patients_date_of_admission" type="date" name="patients_date_of_admission">
+
+                    <label for="patients_address">Address:</label>
+                    <input id="patients_address" type="text" name="patients_address" placeholder="Enter your address">
+
+                    <label for="patients_hospital">Hospital:</label>
+                    <input id="patients_hospital" type="text" name="patients_hospital" placeholder="Hospital Name">
+
+                    <label for="patients_phone">Phone Number:</label>
+                    <input id="patients_phone" type="text" name="patients_phone" placeholder="Enter phone number">
+
+                    <label for="patients_unit">Unit</label>
+                    <input id="patients_unit" type="text" name="patients_unit" placeholder="Enter unit">
+                    
+                    <label for="patients_origin">Origin:</label>
+                    <input id="patients_origin" type="text" name="patients_origin" placeholder="Origin">
+
+                    <label for="patients_status">Status:</label>
+                    <select id="patients_status" name="patients_status">
+                        <option value="" disabled selected>Select Status:</option>
+                        <option value="Admitted">Admitted</option>
+                        <option value="Treated">Treated</option>
+                        <option value="Not Treated">Not treated</option>
+                    </select>
+            <!-- Submit Button -->
+            <button id="submit-btn" type="submit">Submit</button>
+
+        </form>
+    </div>
+</div>
+
+</form>
+</div><!-- Reports Section -->
+<div class="reports">
+
+ <h1>Generate Users Report</h1>
+        <div class="report-form">
+            <form action="php/printAdmin_report.php" method="post">
+                <button type="submit">Generate Admins Report</button>
+            </form>
+        </div>
+        <div class="report-form">
+            <form action="php/printDoctor_report.php" method="post">
+                <button type="submit">Generate Doctor Report</button>
+            </form>
+        </div>
+        <div class="report-form">
+            <form action="php/printHW_report.php" method="post">
+                <button type="submit">Generate Health Workers Report</button>
+            </form>
+        </div>
+        <div class="report-form">
+            <form action="php/printPatient_report.php" method="post">
+                <button type="submit">Generate Patients Report</button>
+            </form>
+        </div>
+</div>
+
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

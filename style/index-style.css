@@ -1,0 +1,384 @@
+/* Basic Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-y: hidden; /* Disable vertical scroll */
+}
+
+/* Keep the navbar within the white background */
+header {
+    position: fixed;
+    top: 30px; /*move the header down*/
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Set the background color to white */
+    display: flex;
+    justify-content: center; /* Center-align the navbar items */
+    padding: 10px 0;
+    z-index: 1000;
+    border-radius: 10px;
+}
+
+/* Adjust the positioning of the navigation links */
+.navbar ul {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    list-style: none;
+    margin: 0; /* Reset default margin */
+    padding-top: 10px; /* Reset default padding */
+    gap: 10px; /* Space between navigation items */
+}
+
+/* Adjust the positioning of the navigation links */
+.navbar .tabs ul {
+    display: flex; /* Aligns list items in a row */
+    list-style: none; /* Removes default list styling */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+    gap: 100px; /* Space between tabs */
+    margin-right: 35px; /* Move the entire list to the left by 15px */
+}
+
+/* Additional style to ensure alignment */
+.navbar {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Distribute space between items */
+    width: 100%;
+    max-width: 1300px;
+    background-color: orangered; /* Adjust as needed */
+    height: 60px; /* Adjust to the height of your navbar */
+    border-radius: 35px;
+    padding: 0 20px; /* Optional: Add padding to adjust spacing within the navbar */
+}
+
+/* Center the logo vertically within the navbar */
+.navbar .logo {
+    margin-right: 175px; /* Space between logo and nav items */
+    display: flex;
+    align-items: center; /* Center logo vertically */
+    padding: 0 20px;
+    font-size: 14px;
+}
+
+/* Make the logo image slightly bigger */
+.navbar .logo img {
+    padding-top: 40px;
+    width: auto; /* Keep the width flexible */
+    height: 170px; /* Adjust height to make the logo bigger */
+    max-height: 0%; /* Ensure the image doesn't overflow */
+    width: 150px; /* Adjust the width to your desired size */
+    height: auto; /* Keep the aspect ratio */
+    margin: 50px; /* Optional: adds some spacing around the images */
+}
+
+.navbar .tabs {
+    display: flex; /* Aligns tabs in a row */
+    flex-grow: 1; /* Allows tabs to take up remaining space */
+}
+
+.navbar .tabs li {
+    display: inline; /* Ensures list items are inline */
+}
+
+.navbar .tabs a {
+    text-decoration: none; /* Removes underline from links */
+    color: #000; /* Link color */
+    padding: 10px; /* Space around link text */
+    display: block; /* Makes the link fill the list item */
+}
+
+ul li a:hover {
+    background-color: lightgoldenrodyellow;
+}
+
+ul li.active a {
+    background-color: grey;
+}
+
+.container {
+    display: flex;
+    width: 400vw;
+    transition: transform 0.5s ease-in-out;
+}
+
+.title {
+    font-size: 4rem;
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px; /* To provide space for the underline */
+    background-image: linear-gradient(to bottom, transparent 90%, orangered 70%, orangered 75%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.description {
+    font-size: 1.2rem; /* Corrected value */
+    color: #f8f8f8;
+    max-width: 80%; /* Ensure it fits within the section */
+    margin: 0 auto; /* Center the description */
+    padding: 20px; /* Add padding to create space around the text */
+    text-shadow: 1px 1px 2px black;
+    box-sizing: border-box; /* Include padding in the element's total width/height */
+    z-index: 2; /* Ensure it stays above other content */
+    position: relative;
+    text-align: center;
+}
+
+.section {
+    min-height: calc(40vh);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: relative;
+}
+/* General font styling for titles and descriptions */
+.description, .login-title {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Styling for radio buttons and related labels */
+.login-form fieldset {
+    border: none; /* Remove default border */
+    padding: 0;
+    margin-bottom: 15px; /* Reduced margin-bottom */
+}
+
+.login-form legend {
+    font-size: 1rem; /* Reduced font size */
+    margin-bottom: 8px; /* Reduced margin-bottom */
+    color: black;
+}
+
+.login-form label input[type="radio"] {
+    margin-right: 8px; /* Reduced space between radio button and label */
+}
+
+.login-form label {
+    display: inline-block;
+    margin-right: 15px; /* Reduced space between radio buttons */
+    font-size: 0.9rem; /* Reduced font size */
+    color: black;
+}
+
+/* Styling for the form container with absolute positioning */
+.login-container {
+    position: absolute; /* Use absolute positioning */
+    top: 90px; /* Move the form down by 300px */
+    left: 50%; /* Center the form horizontally */
+    transform: translateX(-50%); /* Correct centering by shifting left */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    padding: 30px; /* Padding for spacing inside the container */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    max-width: 400px; /* Max width to fit different screen sizes */
+    width: 100%; /* Full width for smaller screens */
+    text-align: center; /* Center-align text */
+    box-sizing: border-box; /* Include padding in the element’s total width/height */
+}
+
+/* Title styling */
+.login-title {
+    font-size: 1.8rem; /* Slightly larger font size */
+    color: black;
+    margin-bottom: 20px; /* Space below the title */
+}
+
+/* Styling for labels */
+.login-form label {
+    font-size: 1rem; /* Slightly larger font size for better readability */
+    color: black;
+    margin-bottom: 10px; /* Space below the label */
+    display: block;
+}
+
+/* Styling for text inputs and password fields */
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for better spacing inside input */
+    margin-bottom: 15px; /* Space below each input field */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Readable font size */
+}
+
+/* Styling for the submit button */
+.login-form button {
+    width: 100%; /* Full width for button */
+    padding: 10px; /* Padding for better size */
+    background-color: dodgerblue;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #1a73e8; /* Darker blue on hover */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .login-container {
+        top: 200px; /* Move the form up for smaller screens */
+    }
+}
+}
+
+
+/* Enhanced styling for all <h1> elements */
+h1 {
+    font-family: 'Pacifico', cursive; /* Cursive font */
+    font-size: 4rem; /* Larger font size for emphasis */
+    font-weight: 700; /* Thick, bold weight */
+    color: #FF6347; /* Vibrant color */
+    text-align: center; /* Center-align the text */
+    margin: 30px 0; /* Space above and below the heading */
+    padding: 15px; /* Padding for extra spacing around the text */
+    border-bottom: 5px double #FF6347; /* Double border for a unique touch */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+    letter-spacing: 2px; /* Increased letter spacing for emphasis */
+    background: linear-gradient(45deg, #FF6347, #FF4500); /* Gradient background */
+    -webkit-background-clip: text; /* Clip background to text */
+    color: transparent; /* Make text color transparent to show gradient */
+}
+
+/* Optional: Media query for responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem; /* Adjust font size on smaller screens */
+        padding: 5px; /* Adjust padding */
+        border-width: 1px; /* Thinner border on smaller screens */
+    }
+}
+
+
+/* Optional: Media query for responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem; /* Adjust font size on smaller screens */
+        padding: 5px; /* Adjust padding */
+        border-width: 1px; /* Thinner border on smaller screens */
+    }
+}
+
+
+h2 {
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px black;
+}
+
+p, ul {
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+ul {
+    padding-left: 20px;
+    text-align: left;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li strong {
+    color: dodgerblue;
+}
+
+a {
+    color: dodgerblue;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: lightblue;
+}
+
+/*to push login furthest to the left*/
+/* Push the Login tab to the right and color it differently */
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+ul li a {
+    text-decoration: none;
+    color: floralwhite;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar ul li:last-child {
+    margin-left: auto; /* Push the last item (Login) to the right */
+}
+
+.navbar ul li:last-child a {
+    background-color: royalblue; /* Change background color */
+    color: white; /* Change text color */
+    padding: 10px 20px; /* Add padding */
+    border-radius: 5px; /* Optional: add rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+.navbar ul li:last-child a:hover {
+    background-color: lightyellow; /* Darker color on hover */
+}
+
+/*for media queries*/
+@media (max-width: 768px) {
+    .navbar {
+        height: 60px;
+    }
+
+    .navbar .tabs ul {
+        flex-direction: column;
+    }
+
+    .login-container {
+        max-width: 100%;
+    }
+}
+
+

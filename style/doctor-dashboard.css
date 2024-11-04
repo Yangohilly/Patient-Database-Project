@@ -1,0 +1,543 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: greenyellow;
+}
+
+.sidebar {
+    background: firebrick;
+    position: absolute;
+    width: 80px;
+    min-height: 100vh;
+    transition: 0.5s;
+    padding-left: 10px;
+    overflow: hidden;
+}
+
+.sidebar.active {
+    width: 300px;
+}
+
+.sidebar ul {
+    position: relative;
+    height: 100%;
+    padding: 0;
+}
+
+.sidebar ul li {
+    position: relative;
+    list-style: none;
+}
+.sidebar ul li.active {
+    background: darkturquoise;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.sidebar ul li.active::before 
+{
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 5px 5px 0 5px darkturquoise;
+    background: transparent;
+}
+
+.sidebar ul li.active::after 
+{
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 5px -5px 0 5px darkturquoise;
+    background: transparent;
+}
+
+.sidebar ul li.logo {
+    margin-bottom: 50px;
+}
+
+.sidebar ul li.logo .icon {
+    font-size: 2em;
+    color: darkturquoise;
+}
+
+.sidebar ul li.logo .text {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: white;
+}
+
+.sidebar ul li a {
+    position: relative;
+    display: flex;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.sidebar ul li a .icon 
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 60px;
+    padding: 10px;
+    height: 70px;
+    font-size: 1.5em;
+    color: #333;
+    transition: 0.5s;
+}
+
+.sidebar ul li a .text 
+{
+    position: relative;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: white;
+    padding-left: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+.sidebar ul li.active a.icon 
+{
+    color: #fff;
+}
+
+.sidebar ul li.active a.text 
+{
+    color: greenyellow;
+}
+
+.sidebar ul li:hover a .icon,
+.sidebar ul li:hover a .text 
+{
+    color: firebrick;
+}
+
+.sidebar ul li.active a .icon::before 
+{
+    content: '';
+    position: absolute;
+    inset: 5px;
+    width: 60px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+.sidebar ul li.hover.active a .icon::before {
+    background: #fff;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.imgBx {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menuToggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #3la4ff;
+    cursor: pointer;
+}
+
+.menuToggle::before,
+.menuToggle::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background: dimgray;
+    transition: 0.5s;
+}
+
+.menuToggle::before {
+    transform: translateY(-9px);
+    box-shadow: 0 9px 0 dimgray;
+}
+
+.menuToggle::after {
+    transform: translateY(9px);
+}
+
+.menuToggle.active::before {
+    transform: translateY(0px) rotate(45deg);
+    box-shadow: 0 0 0 dimgray;
+}
+
+.menuToggle.active::after {
+    transform: translateY(0px) rotate(-45deg);
+    box-shadow: 0 0 0 dimgray;
+}
+
+.content {
+    margin-left: 80px;
+    padding: 20px;
+    min-height: 100vh;
+    transition: margin-left 0.5s;
+    background: darkturquoise;
+}
+
+.content.shifted {
+    margin-left: 300px;
+}
+
+.profile, .users, .reports, .settings {
+    display: none;
+}
+
+.active-section {
+    display: block;
+}
+/* Add these styles to your existing CSS */
+
+.profile {
+    background: #FFFFFF; /* White background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    margin: 20px auto; /* Center the profile section horizontally with margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 800px; /* Max width to control the size */
+}
+
+.profile h1 {
+	text-align: center;
+    color: #333; /* Dark text color for contrast */
+}
+
+.profile p, .profile label, .profile input, .profile button {
+    color: #555; /* Lighter text color for better readability */
+}
+
+.profile input[type="text"], .profile input[type="email"] {
+    width: calc(100% - 22px); /* Full width input fields with padding consideration */
+    padding: 10px; /* Padding inside input fields */
+    border-radius: 5px; /* Rounded corners for input fields */
+    border: 1px solid #ddd; /* Light border */
+}
+
+.profile button {
+    background: firebrick; /* Button background */
+    color: white; /* Button text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Padding inside the button */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Font size for the button text */
+}
+
+.profile button:hover {
+    background: #ff9800; /* Darker button background on hover */
+}
+/*FOR VIEWS*/
+.view-options {
+    margin-bottom: 20px;
+}
+
+.view-options button {
+    margin-right: 10px;
+}
+
+#search-input {
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.view table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.view table, .view th, .view td {
+    border: 1px solid #ccc;
+}
+
+.view th, .view td {
+    padding: 10px;
+    text-align: left;
+}
+
+.view {
+    display: none;
+}
+
+#admin-view, #doctor-view, #health-worker-view, #patient-view {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+/* For Users Section */
+.users {
+    background: #FFFFFF; /* White background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    margin: 20px auto; /* Center the users section horizontally with margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 800px; /* Max width to control the size */
+}
+
+.users h1 {
+    text-align: center;
+    color: #333; /* Dark text color for contrast */
+}
+
+.users p {
+    text-align: center;
+    color: #555; /* Lighter text color for better readability */
+    margin-bottom: 20px;
+}
+
+.users-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#search-users {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: calc(100% - 150px); /* Adjust width to account for button */
+    margin-right: 10px;
+}
+
+#add-user-btn {
+    background: firebrick;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#add-user-btn:hover {
+    background: #ff9800;
+}
+
+#users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#users-table thead {
+    background: firebrick;
+    color: white;
+}
+
+#users-table th, #users-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+#users-table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+#users-table tbody tr:hover {
+    background: #f1f1f1;
+}
+
+.edit-btn, .delete-btn {
+    background: transparent;
+    border: none;
+    color: firebrick;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 0.9em;
+}
+
+.edit-btn:hover {
+    color: #ff9800;
+}
+
+.delete-btn {
+    color: #e53935;
+}
+
+.delete-btn:hover {
+    color: #c62828;
+}
+
+/*for report and settings*/
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Reports Section */
+.reports {
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.reports h1 {
+    color: #333;
+}
+
+.reports button {
+    background: firebrick;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.reports button:hover {
+    background: #0056b3;
+}
+
+.report-output {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+/* Settings Section */
+.settings {
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.settings h1 {
+    color: #333;
+}
+
+.settings label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.settings input[type="text"], .settings select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.settings button {
+    background: firebrick;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.settings button:hover {
+    background: darkorange;
+}
+
+/* Tab Buttons and Content */
+.tab {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab button {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px 5px 0 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 16px;
+}
+
+.tab button:hover {
+    background: #eee;
+}
+
+.tab button.active {
+    background: #fff;
+    border-bottom: 1px solid transparent;
+}
+
+.tabcontent {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 0 0 5px 5px;
+    background: #fff;
+}
+
+/*FOR MEDICAL RECORDS*/
+/* Ensure that medical records section is hidden when not active */
+.medical-records {
+    display: none;
+}
+
+.medical-records.active-section {
+    display: block;
+}
+
+/* For other sections */
+.profile, .reports, .settings {
+    display: none;
+}
+
+.active-section {
+    display: block;
+}
+

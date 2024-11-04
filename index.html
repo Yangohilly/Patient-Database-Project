@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <br>
+    <title>Patient Database System</title>
+    <link rel="stylesheet" href="style/index-style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/AGH.jpg" alt="AGH logo">  
+            </div>
+            <ul>
+                <li><a href="#home" onclick="scrollToSection(event, 0)">Home</a></li>
+                <li><a href="#about" onclick="scrollToSection(event, 1)">About</a></li>
+                <li><a href="#help" onclick="scrollToSection(event, 2)">Contact</a></li>
+                <li><a href="#login" onclick="scrollToSection(event, 3)">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="home" class="section" style="background-image: url('images/home.png');">
+            <h1 class="title">Patient Database System</h1>
+            <br>
+            <br>
+            <h2>for Alotau General Hospital</h2>
+            <div class="logo">
+                <!-- <img src="images/logo.jpg" alt="System logo"> -->
+            </div>
+            <p class="description">Welcome to the Patient Database System, your reliable solution for managing patient records efficiently and securely.</p>
+        </section>
+
+        <section id="about" class="section" style="background-image: url('images/about.png');">
+            <h2>About the Patient Database System</h2>
+            <p>The Patient Database System is designed to provide healthcare professionals with a comprehensive solution for managing patient information.</p>
+            
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Patient Record Management:</strong> Organize and update patient records efficiently.</li>
+                <li><strong>Medical History Tracking:</strong> Keep detailed records of patient medical histories.</li>
+            </ul>
+        </section>
+
+        <section id="help" class="section" style="background-image: url('images/help.png');">
+
+<h3>Need Assistance?</h3>
+<p>If you have any questions, issues, or require help with the Patient Database System, please don't hesitate to contact the main admin.</p>
+
+<h3>How to Contact Us</h3>
+<ul>
+    <li><strong>Admin Name:</strong> Yangohilly Mengeap</li>
+    <li><strong>Phone Number:</strong> +78331447</li>
+    <li><strong>Email Address:</strong> <a href="mailto:ymengeap@gmail.com">ymengeap@gmail.com</a></li>
+</ul>
+
+<p>If your question is not covered above or you need further assistance, feel free to reach out via the provided contact details.</p>
+
+        </section>
+        <!-- Move the login section to the end -->
+        <section id="login" class="section" style="background-image: url('images/login.png');">
+            <div class="login-container">
+                        <img id="user-icon" src="images/default-icon.png" alt="User Icon" style="width: 100px; height: auto; display: block; margin: 0 auto;">
+
+                <h2 class="login-title">Login</h2>
+
+        <form class="login-form" action="php/login_process.php" method="post">
+      <fieldset>
+        <label>
+<input type="radio" name="role" value="admin" required onchange="changeIcon('admin')">
+            Admin
+        </label>
+        <label>
+<input type="radio" name="role" value="doctor" onchange="changeIcon('doctor')">
+            Doctor
+        </label>
+        <label>
+<input type="radio" name="role" value="health_worker" onchange="changeIcon('health_worker')">
+            Health Worker
+        </label>
+      </fieldset>
+
+      <label for="id_number">ID Number:</label>
+      <input type="text" id="id_number" name="id_number" required>
+
+         <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+            </form>
+            </div>
+    </section>
+
+
+
+    </main>
+    <script>
+        function scrollToSection(event, index) {
+            event.preventDefault();
+            const container = document.querySelector('.container');
+            const sectionWidth = window.innerWidth;
+            container.style.transform = `translateX(-${sectionWidth * index}px)`;
+        }
+    </script>
+
+    <!-- For ICON change in LOGIN -->
+    <script>
+function changeIcon(role) {
+    const icon = document.getElementById('user-icon');
+    
+    // Define a mapping of roles to image paths
+    const icons = {
+        admin: 'images/admin-icon.png',
+        doctor: 'images/doctor-icon.png',
+        health_worker: 'images/health-worker-icon.png'
+    };
+
+    // Set the icon's source based on the selected role
+    if (icons[role]) {
+        icon.src = icons[role];
+    } else {
+        icon.src = 'images/default-icon.png'; // Fallback image
+    }
+}
+
+</script>
+</body>
+</html>

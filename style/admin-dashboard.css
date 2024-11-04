@@ -1,0 +1,644 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: slategrey;
+}
+
+.sidebar {
+    background: darkorange;
+    position: absolute;
+    width: 80px;
+    min-height: 100vh;
+    transition: 0.5s;
+    padding-left: 10px;
+    overflow: hidden;
+    z-index: 1000; /* Ensure sidebar is on top */
+}
+
+.sidebar.active {
+    width: 300px;
+}
+
+.sidebar ul {
+    position: relative;
+    height: 100%;
+    padding: 0;
+}
+
+.sidebar ul li {
+    position: relative;
+    list-style: none;
+}
+
+.sidebar ul li.active {
+    background: slategrey;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.sidebar ul li.active::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 5px 5px 0 5px slategrey;
+    background: transparent;
+}
+
+.sidebar ul li.active::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 5px -5px 0 5px slategrey;
+    background: transparent;
+}
+
+.sidebar ul li.logo {
+    margin-bottom: 50px;
+}
+
+.sidebar ul li.logo .icon {
+    font-size: 2em;
+    color: slategrey;
+}
+
+.sidebar ul li.logo .text {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: white;
+}
+
+.sidebar ul li a {
+    position: relative;
+    display: flex;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.sidebar ul li a .icon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 60px;
+    padding: 10px;
+    height: 70px;
+    font-size: 1.5em;
+    color: #333;
+    transition: 0.5s;
+}
+
+.sidebar ul li a .text {
+    position: relative;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: white;
+    padding-left: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+.sidebar ul li.active a.icon {
+    color: #fff;
+}
+
+.sidebar ul li.active a.text {
+    color: slategrey;
+}
+
+.sidebar ul li:hover a .icon,
+.sidebar ul li:hover a .text {
+    color: darkorange;
+}
+
+.sidebar ul li.active a .icon::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    width: 60px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+.sidebar ul li.hover.active a .icon::before {
+    background: #fff;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Adjusting the size of the .imgBx container */
+.imgBx {
+    position: relative;
+    width: 50px; /* Increased width */
+    height: 50px; /* Increased height */
+    border-radius: 50%; /* Keeps the circular shape */
+    overflow: hidden; /* Hides overflow */
+}
+
+/* Ensuring the image fits properly within .imgBx */
+.imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Image fills the container */
+    height: 100%; /* Image fills the container */
+    object-fit: cover; /* Ensures proper aspect ratio */
+}
+
+.sidebar.expanded .unique-logo {
+    display: block; /* Show the logo when the sidebar is expanded */
+}
+
+
+/*for the AGH logo to show bigger on the nav tab on left*/
+/* Unique Styles for Logo */
+.unique-logo {
+    margin-top: 60px;
+    padding-left: 50px;
+    display: inline-block;
+}
+
+.unique-logo .icon {
+    font-size: 2.5em; /* Larger icon size */
+}
+
+.unique-logo .text {
+    font-size: 1.5em; /* Larger text size */
+    font-weight: 600;
+    color: white;
+}
+
+/* Unique Styles for Image Box */
+.unique-imgBx {
+    padding: 0;
+    width: 210px; /* Increased width */
+    height: 210px; /* Increased height */
+}
+
+.menuToggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #3la4ff;
+    cursor: pointer;
+}
+
+.menuToggle::before,
+.menuToggle::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background: darkorange;
+    transition: 0.5s;
+}
+
+.menuToggle::before {
+    transform: translateY(-9px);
+    box-shadow: 0 9px 0 darkorange;
+}
+
+.menuToggle::after {
+    transform: translateY(9px);
+}
+
+.menuToggle.active::before {
+    transform: translateY(0px) rotate(45deg);
+    box-shadow: 0 0 0 darkorange;
+}
+
+.menuToggle.active::after {
+    transform: translateY(0px) rotate(-45deg);
+    box-shadow: 0 0 0 darkorange;
+}
+
+.content {
+    margin-left: 80px;
+    padding: 20px;
+    min-height: 100vh; /* Ensures it covers the full viewport height */
+    background: slategrey;
+    overflow: auto; /* Adds scrollbars if content overflows */
+    width: auto; /* Allows width to adjust based on content */
+    z-index: 1; /* Ensure content is above sidebar */
+}
+
+.content.shifted {
+    margin-left: 300px;
+}
+
+/* Ensure inner content fits */
+.profile, .users, .reports, .settings {
+    width: 100%; /* Full width of the container */
+    box-sizing: border-box; /* Includes padding and border in element's total width and height */
+}
+
+.profile, .users, .reports, .settings {
+    display: none;
+}
+
+.active-section {
+    display: block;
+}
+
+/* Add these styles to your existing CSS */
+.profile {
+    background: #FFFFFF; /* White background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    margin: 20px auto; /* Center the profile section horizontally with margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 800px; /* Max width to control the size */
+}
+
+.profile h1 {
+    text-align: center;
+    color: #333; /* Dark text color for contrast */
+}
+
+.profile p, .profile label, .profile input, .profile button {
+    color: #555; /* Lighter text color for better readability */
+}
+
+.profile input[type="text"], .profile input[type="email"] {
+    width: calc(100% - 22px); /* Full width input fields with padding consideration */
+    padding: 10px; /* Padding inside input fields */
+    border-radius: 5px; /* Rounded corners for input fields */
+    border: 1px solid #ddd; /* Light border */
+}
+
+.profile button {
+    text-align: center;
+    background: darkorange; /* Button background */
+    color: white; /* Button text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Padding inside the button */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Font size for the button text */
+    margin: 0 10px;
+}
+
+.profile button:hover {
+    background: #ff9800; /* Darker button background on hover */
+}
+
+/*FOR VIEWS*/
+/* View Options */
+.view-options {
+    margin-bottom: 20px;
+}
+
+.view-options button {
+    margin-right: 10px;
+    align-content: center;
+}
+
+/* Search Input */
+#search-input {
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* View Container */
+.view {
+    display: none;
+    background: greenyellow; /* White background for view sections */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-top: 10px;
+    max-width: 1000px;
+    overflow-x: auto; /* Enable horizontal scroll if content overflows */
+}
+
+/* Table Styling */
+.view table {
+    background-color: floralwhite;
+    width: 100%;
+    table-layout: auto; /* Adjust column width based on content */
+    border-collapse: collapse; /* Ensures no extra space between cells */
+}
+
+/* Table, Header, and Cell Borders */
+.view table, .view th, .view td {
+    border: 1px solid #ccc;
+}
+
+/* Header and Cell Padding */
+.view th, .view td {
+    padding: 15px; /* Increased padding for better spacing */
+    text-align: left;
+}
+
+/* Table Headers */
+.view th {
+    background-color: slategrey;
+    border-bottom: 1px solid #ccc;
+    min-width: 150px; /* Ensure columns have a decent minimum width */
+}
+
+/* View Sections */
+/* Consistent border styling for all view sections */
+#admin-view,
+#doctor-view,
+#healthworker-view,
+#patient-view {
+    border: 1px solid #ccc; /* Consistent border color */
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: ghostwhite;
+}
+
+/* General Styles */
+.users {
+    background: #FFFFFF;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 950px;
+    overflow: auto;
+}
+
+.users h1 {
+    text-align: center;
+    color: #333;
+}
+
+.users p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.users-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#search-users {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: calc(100% - 150px);
+    margin-right: 10px;
+}
+
+#submit-btn {
+    background: darkorange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#submit-btn:hover {
+    background: #ff9800;
+}
+
+/* Form Section Styles */
+.user-type-selection {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.user-form-section {
+    display: none; /* Hidden by default */
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Heading for user form sections */
+.user-form-section h2 {
+    text-align: center;
+    margin-top: 0;
+    color: mediumblue;
+}
+
+/* Grid Layout for Form Fields */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 10px; /* Space between columns */
+}
+
+/* Ensure equal distribution of form fields */
+.form-row > div {
+    box-sizing: border-box;
+}
+
+/* Label styling */
+.user-form-section label {
+    display: block;
+    margin: 4px 0; /* Reduced space between labels and fields */
+    font-size: 14px; /* Adjust font size if needed */
+    color: #333;
+}
+
+/* Input and select field styling */
+.user-form-section input,
+.user-form-section select {
+    padding: 8px 12px; /* Reduced padding for better fit */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px; /* Adjust font size if needed */
+    margin-bottom: 10px; /* Space below each field */
+}
+
+/* Ensure form fields fit well within the container */
+.user-form-section input[type="text"],
+.user-form-section input[type="password"],
+.user-form-section input[type="date"],
+.user-form-section select {
+    width: calc(100% - 24px); /* Adjust width to account for padding */
+}
+
+/* Button Styles */
+.edit-btn,
+.delete-btn {
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.delete-btn {
+    background: #DC3545;
+}
+
+.edit-btn:hover {
+    background: #0056b3;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.user-form-section {
+            display: none; /* Hide all user type forms initially */
+}
+
+/*for LOGOUT*/
+/* Additional styling for the logout link */
+.logout-link {
+    display: inline-block; /* Display as a block element */
+    background-color: white; /* Background color for the logout link */
+    color: black; /* Text color */
+    padding: 10px 20px; /* Padding inside the button */
+    border-radius: 5px; /* Rounded corners for the button */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.logout-link:hover {
+    background-color: #f0f0f0; /* Lighter background on hover */
+}
+
+/*for reporting*/
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: slategrey;
+}
+
+/* Reports Section Styling */
+.reports {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.reports h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 1em;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    background: darkorange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+    background: #007bff; /* Blue for secondary button */
+}
+
+.btn-primary:hover {
+    background: #ff9800;
+}
+
+.btn-secondary:hover {
+    background: #0056b3;
+}
+
+/*for REPORT*/
+
+        .report-form {
+            margin-bottom: 20px;
+        }
+        .report-form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .report-form button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .report-form button:active {
+            background-color: #004494;
+            transform: translateY(0);
+        }
+        .report-form button.disabled {
+            background-color: #b0b0b0;
+            cursor: not-allowed;
+        }
